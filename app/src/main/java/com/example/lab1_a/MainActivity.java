@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button getResult;
     private EditText input;
     private TextView result;
+    private static int counter = 0;
 
 
     @Override
@@ -31,14 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static long[] GetSumOfSquares(long n) {
         double x, y;
-
+        counter = 0;
         x = Math.ceil(Math.sqrt(n));
         y = Math.pow(x, 2) - n;
+
 
         while (Math.abs(Math.sqrt(y) - Math.ceil(Math.sqrt(y))) > 0.0001f) {
             x++;
             y = Math.pow(x, 2) - n;
-
+            counter++;
         }
 
         return new long[] {(long) x, (long) Math.sqrt(y)};
@@ -74,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
                         multipliers[1] = Math.abs(sqrts[0] - sqrts[1]);
 
                         if (flag) {
-                            String res = String.format(n + " = " + multipliers[0] + "*" + multipliers[1]);
+                            String res = String.format(n + " = " + multipliers[0] + "*" + multipliers[1] + "\nКількість ітерацій: " + counter);
                             result.setText(res);
+
                         }
 
                     }
